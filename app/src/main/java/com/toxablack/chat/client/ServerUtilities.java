@@ -32,7 +32,7 @@ import java.util.Random;
 
 
 /**
- * Helper class used to communicate with the demo server.
+ * Helper class used to communicate with the  server.
  */
 public final class ServerUtilities {
 	
