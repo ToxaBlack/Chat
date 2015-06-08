@@ -1,6 +1,5 @@
 package com.toxablack.chat;
 
-import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.LoaderManager;
 import android.content.CursorLoader;
@@ -18,58 +17,42 @@ import android.widget.TextView;
 
 public class MainActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 	
-	private SimpleCursorAdapter adapter;
+	private SimpleCursorAdapter mAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		adapter = new SimpleCursorAdapter(this, 
+		mAdapter = new SimpleCursorAdapter(this,
 				R.layout.main_list_item, 
 				null, 
 				new String[]{DataProvider.COL_NAME, DataProvider.COL_COUNT}, 
 				new int[]{R.id.text1, R.id.text2},
 				0);
 		
-		adapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
-			
+		mAdapter.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+
 			@Override
 			public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
-				switch(view.getId()) {
-				case R.id.text2:
-					int count = cursor.getInt(columnIndex);
-					if (count > 0) {
-						((TextView)view).setText(String.format("%d new message%s", count, count==1 ? "" : "s"));
-					}
-					return true;					
+				switch (view.getId()) {
+					case R.id.text2:
+						int count = cursor.getInt(columnIndex);
+						if (count > 0) {
+							((TextView) view).setText(String.format("%d new message%s", count, count == 1 ? "" : "s"));
+						}
+						return true;
 				}
 				return false;
 			}
 		});
 		
-		setListAdapter(adapter);
-		
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowTitleEnabled(false);
-		
-/*		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		
-		ArrayAdapter<CharSequence> dropdownAdapter = ArrayAdapter.createFromResource(this, R.array.dropdown_arr, android.R.layout.simple_list_item_1);
-		actionBar.setListNavigationCallbacks(dropdownAdapter, new ActionBar.OnNavigationListener() {
-			
-			@Override
-			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
-				getLoaderManager().restartLoader(0, getArgs(itemPosition), MainActivity.this);
-				return true;
-			}
-		});*/
-		
+		setListAdapter(mAdapter);
 		getLoaderManager().initLoader(0, null, this);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -112,12 +95,12 @@ public class MainActivity extends ListActivity implements LoaderManager.LoaderCa
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-		adapter.swapCursor(data);
+		mAdapter.swapCursor(data);
 	}
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> loader) {
-		adapter.swapCursor(null);
+		mAdapter.swapCursor(null);
 	}	
 
 }

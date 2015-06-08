@@ -12,9 +12,11 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -80,6 +82,7 @@ public class MessagesFragment extends ListFragment implements LoaderManager.Load
             }
         });
 
+
         setListAdapter(mAdapter);
     }
 
@@ -88,6 +91,15 @@ public class MessagesFragment extends ListFragment implements LoaderManager.Load
         super.onActivityCreated(savedInstanceState);
 
         getListView().setDivider(null);
+        getListView().setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        mAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                getListView().setSelection(mAdapter.getCount() - 1);
+            }
+        });
+
 
         Bundle args = new Bundle();
         args.putString(DataProvider.COL_EMAIL, mListener.getProfileEmail());

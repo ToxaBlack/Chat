@@ -18,15 +18,15 @@ public class AddContactDialog extends DialogFragment {
 
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		final Context ctx = getActivity();
+		final Context context = getActivity();
 		
-		final EditText et = new EditText(ctx);
-		et.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-		et.setHint("abc@example.com");
+		final EditText editText = new EditText(context);
+		editText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+		editText.setHint("abc@example.com");
 		
-		final AlertDialog alert = new AlertDialog.Builder(ctx)
+		final AlertDialog alert = new AlertDialog.Builder(context)
 			.setTitle("Add Contact")
-			.setView(et)
+			.setView(editText)
 			.setPositiveButton(android.R.string.ok, null)
 			.setNegativeButton(android.R.string.cancel, null)
 			.create();
@@ -39,10 +39,10 @@ public class AddContactDialog extends DialogFragment {
 				okBtn.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
-					public void onClick(View v) {
-						String email = et.getText().toString();
+					public void onClick(View view) {
+						String email = editText.getText().toString();
 						if (!isEmailValid(email)) {
-							et.setError("Invalid email!");
+							editText.setError("Invalid email!");
 							return;
 						}
 						
@@ -50,7 +50,7 @@ public class AddContactDialog extends DialogFragment {
 							ContentValues values = new ContentValues(2);
 							values.put(DataProvider.COL_NAME, email.substring(0, email.indexOf('@')));
 							values.put(DataProvider.COL_EMAIL, email);
-							ctx.getContentResolver().insert(DataProvider.CONTENT_URI_PROFILE, values);
+							context.getContentResolver().insert(DataProvider.CONTENT_URI_PROFILE, values);
 						} catch (SQLException sqle) {}
 						
 						alert.dismiss();
