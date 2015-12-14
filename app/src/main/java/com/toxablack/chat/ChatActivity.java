@@ -27,13 +27,13 @@ import com.toxablack.chat.client.ServerUtilities;
 
 public class ChatActivity extends Activity implements MessagesFragment.OnFragmentInteractionListener, EditContactDialog.OnFragmentInteractionListener {
 
-	private EditText msgEdit;
-	private Button sendBtn;
+	private EditText mEditText;
+	private Button mButton;
 	private String profileId;
 	private String profileName;
 	private String profileEmail;
 	
-	private GcmUtil gcmUtil;
+	private GcmUtil mGcmUtil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class ChatActivity extends Activity implements MessagesFragment.OnFragmen
 		setContentView(R.layout.activity_chat);
 		
 		profileId = getIntent().getStringExtra(Common.PROFILE_ID);
-		msgEdit = (EditText) findViewById(R.id.msg_edit);
-		sendBtn = (Button) findViewById(R.id.send_btn);
+		mEditText = (EditText) findViewById(R.id.msg_edit);
+		mButton = (Button) findViewById(R.id.send_btn);
 		
 		ActionBar actionBar = getActionBar();
 		actionBar.setHomeButtonEnabled(true);
@@ -57,7 +57,7 @@ public class ChatActivity extends Activity implements MessagesFragment.OnFragmen
 		actionBar.setSubtitle("connecting ...");
 		
 		registerReceiver(registrationStatusReceiver, new IntentFilter(Common.ACTION_REGISTER));
-		gcmUtil = new GcmUtil(getApplicationContext());
+		mGcmUtil = new GcmUtil(getApplicationContext());
 	}
 	
 	@Override
@@ -91,8 +91,8 @@ public class ChatActivity extends Activity implements MessagesFragment.OnFragmen
 	public void onClick(View v) {
 		switch(v.getId()) {
 		case R.id.send_btn:
-			send(msgEdit.getText().toString());
-			msgEdit.setText(null);
+			send(mEditText.getText().toString());
+			mEditText.setText(null);
 			break;
 		}
 	}
@@ -146,7 +146,7 @@ public class ChatActivity extends Activity implements MessagesFragment.OnFragmen
 	@Override
 	protected void onDestroy() {
 		unregisterReceiver(registrationStatusReceiver);
-		gcmUtil.cleanup();
+		mGcmUtil.cleanup();
 		super.onDestroy();
 	}
 	
@@ -160,7 +160,7 @@ public class ChatActivity extends Activity implements MessagesFragment.OnFragmen
 				switch (intent.getIntExtra(Common.EXTRA_STATUS, 100)) {
 				case Common.STATUS_SUCCESS:
 					getActionBar().setSubtitle("online");
-					sendBtn.setEnabled(true);
+					mButton.setEnabled(true);
 					break;
 					
 				case Common.STATUS_FAILED:

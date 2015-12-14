@@ -28,4 +28,4 @@
         android:layout_toRightOf="@+id/avatar"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</RelativeLayout><!-- From: file:/F:/Java/Messenger/Chat/app/src/main/res/layout/main_list_item.xml -->
+</RelativeLayout><!-- From: file:/F:/Univer/Course%20Project/Chat/app/src/main/res/layout/main_list_item.xml -->

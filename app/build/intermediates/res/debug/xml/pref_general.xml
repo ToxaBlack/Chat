@@ -22,4 +22,4 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_chat_email_id" />
 
-</PreferenceScreen><!-- From: file:/F:/Java/Messenger/Chat/app/src/main/res/xml/pref_general.xml -->
+</PreferenceScreen><!-- From: file:/F:/Univer/Course%20Project/Chat/app/src/main/res/xml/pref_general.xml -->

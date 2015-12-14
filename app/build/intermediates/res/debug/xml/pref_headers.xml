@@ -10,4 +10,4 @@
         android:fragment="com.toxablack.chat.SettingsActivity$MessagingPreferenceFragment"
         android:title="@string/pref_header_messaging" />        
 
-</preference-headers><!-- From: file:/F:/Java/Messenger/Chat/app/src/main/res/xml/pref_headers.xml -->
+</preference-headers><!-- From: file:/F:/Univer/Course%20Project/Chat/app/src/main/res/xml/pref_headers.xml -->

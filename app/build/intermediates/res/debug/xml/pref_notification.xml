@@ -19,4 +19,4 @@
         android:ringtoneType="notification"
         android:title="@string/pref_title_ringtone" />
 
-</PreferenceScreen><!-- From: file:/F:/Java/Messenger/Chat/app/src/main/res/xml/pref_notification.xml -->
+</PreferenceScreen><!-- From: file:/F:/Univer/Course%20Project/Chat/app/src/main/res/xml/pref_notification.xml -->

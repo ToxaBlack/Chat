@@ -129,6 +129,7 @@ public class MessagesFragment extends ListFragment implements LoaderManager.Load
             return DATE_FORMATS[0].format(date);
         } catch (ParseException e) {
             return datetime;
+
         }
     }
 

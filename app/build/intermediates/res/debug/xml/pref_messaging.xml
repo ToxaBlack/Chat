@@ -11,4 +11,4 @@
         android:key="sender_id_pref"
         android:title="@string/pref_title_sender_id" />
     
-</PreferenceScreen><!-- From: file:/F:/Java/Messenger/Chat/app/src/main/res/xml/pref_messaging.xml -->
+</PreferenceScreen><!-- From: file:/F:/Univer/Course%20Project/Chat/app/src/main/res/xml/pref_messaging.xml -->
